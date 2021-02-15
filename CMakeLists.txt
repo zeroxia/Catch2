@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 
-# detect if Catch is being bundled,
-# disable testsuite in that case
-if(NOT DEFINED PROJECT_NAME)
-    set(NOT_SUBPROJECT ON)
+# If Catch is bundled by add_subdirectory, it would disable install.
+# Disable this feature.
+set(NOT_SUBPROJECT ON)
+if(DEFINED PROJECT_NAME)
+    message(STATUS "[!] Catch is being built with add_subdirectory.")
 endif()
 
 # Catch2's build breaks if done in-tree. You probably should not build
